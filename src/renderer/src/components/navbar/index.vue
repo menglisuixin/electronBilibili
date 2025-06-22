@@ -1,11 +1,7 @@
 <template>
   <div class="container">
     <NavbarBack />
-    <el-menu
-      class="el-menu-vertical-demo"
-      :router="true"
-      style="-webkit-app-region: no-drag"
-    >
+    <el-menu class="el-menu-vertical-demo" :router="true" style="-webkit-app-region: no-drag">
       <NavbarMenuItems
         :menuList="topMenuList"
         class="outer"
@@ -17,7 +13,8 @@
         class="inner"
         :currentId="currentId"
         @item-click="handleItemClick"
-      />
+      >
+      </NavbarMenuItems>
     </el-menu>
   </div>
 </template>
@@ -29,13 +26,16 @@ import NavbarBack from './component/navbarBack/index.vue'
 import NavbarMenuItems from './component/navbarMenuItems/index.vue'
 const topMenuList = computed(() => menuList.slice(0, 4))
 const bottomMenuList = computed(() => menuList.slice(4))
-// ¶¨Òå¹²ÓÃµÄ currentId£¬Ä¬ÈÏÑ¡ÖĞµÚÒ»¸ö²Ëµ¥Ïî
+// å®šä¹‰å…±ç”¨çš„ currentIdï¼Œé»˜è®¤é€‰ä¸­ç¬¬ä¸€ä¸ªèœå•é¡¹
 const currentId = ref(menuList[0].id)
-// ´¦Àí²Ëµ¥Ïîµã»÷ÊÂ¼ş
+// å¤„ç†èœå•é¡¹ç‚¹å‡»äº‹ä»¶
 const handleItemClick = (id) => {
-  // ÅÅ³ı id Îª 6¡¢7¡¢8 µÄ²Ëµ¥Ïî
+  // æ’é™¤ id ä¸º 6ã€7ã€8 çš„èœå•é¡¹
   if (![6, 7, 8].includes(id)) {
     currentId.value = id
+  }
+  if (id == 8) {
+    console.log('åˆ‡æ¢ä¸»é¢˜');
   }
 }
 </script>

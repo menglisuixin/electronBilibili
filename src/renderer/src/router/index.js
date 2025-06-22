@@ -4,6 +4,10 @@ const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
+      path: '/',
+      redirect: '/home'
+    },
+    {
       path: '/home',
       components: {
         default: () => import('../pages/home/index.vue'),
@@ -12,7 +16,6 @@ const router = createRouter({
       meta: { title: '首页' },
       redirect: '/home/recommend',
       children: [
-        
         {
           path: 'live',
           component: () => import('../pages/live/index.vue'),

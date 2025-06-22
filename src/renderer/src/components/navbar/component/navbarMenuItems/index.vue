@@ -10,9 +10,11 @@
       @mouseleave="handleItemLeave($event)"
       :class="{ active: currentId === item.id && ![6, 7, 8].includes(item.id) }"
     >
-      <el-icon
-        v-html="getIcon(item, currentHoverId === item.id || currentId === item.id)"
-      ></el-icon>
+      <label :title="item.itemName">
+        <el-icon
+          v-html="getIcon(item, currentHoverId === item.id || currentId === item.id)"
+        ></el-icon>
+      </label>
       <p class="title" :class="{ active: currentId === item.id }">{{ item.title }}</p>
     </el-menu-item>
   </div>
@@ -85,6 +87,9 @@ const handleItemLeave = (event) => {
   align-items: center;
   padding-left: 0 !important;
   transition: all 0.3s;
+  label {
+    display: inline-flex;
+  }
 }
 
 .title {
