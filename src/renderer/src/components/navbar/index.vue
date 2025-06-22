@@ -1,7 +1,11 @@
 <template>
   <div class="container">
     <NavbarBack />
-    <el-menu class="el-menu-vertical-demo" :router="true" style="-webkit-app-region: no-drag">
+    <el-menu
+      class="el-menu-vertical-demo"
+      :router="true"
+      style="-webkit-app-region: no-drag"
+    >
       <NavbarMenuItems
         :menuList="topMenuList"
         class="outer"

@@ -2,12 +2,12 @@ const menuList2 = [
   {
     id: '1',
     title: '综合',
-    index: '/updates/comprehensive'
+    index: '/comprehensive'
   },
   {
     id: '2',
     title: '视频',
-    index: '/updates/video'
+    index: '/video'
   }
 ]
 

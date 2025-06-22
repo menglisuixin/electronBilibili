@@ -1,122 +1,123 @@
-const recommendList = ref([
+const recommendList = [
   {
     id: 1,
-    title: 'ÍÆ¼öÏî 1',
-    description: 'ÕâÊÇÍÆ¼öÏî 1 µÄÃèÊöĞÅÏ¢',
+    title: 'æ¨èé¡¹ 1',
+    description: 'è¿™æ˜¯æ¨èé¡¹ 1 çš„æè¿°ä¿¡æ¯',
     image: 'https://via.placeholder.com/300'
   },
   {
     id: 2,
-    title: 'ÍÆ¼öÏî 2',
-    description: 'ÕâÊÇÍÆ¼öÏî 2 µÄÃèÊöĞÅÏ¢',
+    title: 'æ¨èé¡¹ 2',
+    description: 'è¿™æ˜¯æ¨èé¡¹ 2 çš„æè¿°ä¿¡æ¯',
     image: 'https://via.placeholder.com/300'
   },
   {
     id: 3,
-    title: 'ÍÆ¼öÏî 3',
-    description: 'ÕâÊÇÍÆ¼öÏî 3 µÄÃèÊöĞÅÏ¢',
+    title: 'æ¨èé¡¹ 3',
+    description: 'è¿™æ˜¯æ¨èé¡¹ 3 çš„æè¿°ä¿¡æ¯',
     image: 'https://via.placeholder.com/300'
   },
   {
     id: 4,
-    title: 'ÍÆ¼öÏî 4',
-    description: 'ÕâÊÇÍÆ¼öÏî 4 µÄÃèÊöĞÅÏ¢',
+    title: 'æ¨èé¡¹ 4',
+    description: 'è¿™æ˜¯æ¨èé¡¹ 4 çš„æè¿°ä¿¡æ¯',
     image: 'https://via.placeholder.com/300'
   },
   {
     id: 5,
-    title: 'ÍÆ¼öÏî 5',
-    description: 'ÕâÊÇÍÆ¼öÏî 5 µÄÃèÊöĞÅÏ¢',
+    title: 'æ¨èé¡¹ 5',
+    description: 'è¿™æ˜¯æ¨èé¡¹ 5 çš„æè¿°ä¿¡æ¯',
     image: 'https://via.placeholder.com/300'
   },
   {
     id: 6,
-    title: 'ÍÆ¼öÏî 6',
-    description: 'ÕâÊÇÍÆ¼öÏî 6 µÄÃèÊöĞÅÏ¢',
+    title: 'æ¨èé¡¹ 6',
+    description: 'è¿™æ˜¯æ¨èé¡¹ 6 çš„æè¿°ä¿¡æ¯',
     image: 'https://via.placeholder.com/300'
   },
   {
     id: 7,
-    title: 'ÍÆ¼öÏî 7',
-    description: 'ÕâÊÇÍÆ¼öÏî 7 µÄÃèÊöĞÅÏ¢',
+    title: 'æ¨èé¡¹ 7',
+    description: 'è¿™æ˜¯æ¨èé¡¹ 7 çš„æè¿°ä¿¡æ¯',
     image: 'https://via.placeholder.com/300'
   },
   {
     id: 8,
-    title: 'ÍÆ¼öÏî 8',
-    description: 'ÕâÊÇÍÆ¼öÏî 8 µÄÃèÊöĞÅÏ¢',
+    title: 'æ¨èé¡¹ 8',
+    description: 'è¿™æ˜¯æ¨èé¡¹ 8 çš„æè¿°ä¿¡æ¯',
     image: 'https://via.placeholder.com/300'
   },
   {
     id: 9,
-    title: 'ÍÆ¼öÏî 9',
-    description: 'ÕâÊÇÍÆ¼öÏî 9 µÄÃèÊöĞÅÏ¢',
+    title: 'æ¨èé¡¹ 9',
+    description: 'è¿™æ˜¯æ¨èé¡¹ 9 çš„æè¿°ä¿¡æ¯',
     image: 'https://via.placeholder.com/300'
   },
   {
     id: 10,
-    title: 'ÍÆ¼öÏî 10',
-    description: 'ÕâÊÇÍÆ¼öÏî 10 µÄÃèÊöĞÅÏ¢',
+    title: 'æ¨èé¡¹ 10',
+    description: 'è¿™æ˜¯æ¨èé¡¹ 10 çš„æè¿°ä¿¡æ¯',
     image: 'https://via.placeholder.com/300'
   },
   {
     id: 11,
-    title: 'ÍÆ¼öÏî 11',
-    description: 'ÕâÊÇÍÆ¼öÏî 11 µÄÃèÊöĞÅÏ¢',
+    title: 'æ¨èé¡¹ 11',
+    description: 'è¿™æ˜¯æ¨èé¡¹ 11 çš„æè¿°ä¿¡æ¯',
     image: 'https://via.placeholder.com/300'
   },
   {
     id: 12,
-    title: 'ÍÆ¼öÏî 12',
-    description: 'ÕâÊÇÍÆ¼öÏî 12 µÄÃèÊöĞÅÏ¢',
+    title: 'æ¨èé¡¹ 12',
+    description: 'è¿™æ˜¯æ¨èé¡¹ 12 çš„æè¿°ä¿¡æ¯',
     image: 'https://via.placeholder.com/300'
   },
   {
     id: 13,
-    title: 'ÍÆ¼öÏî 13',
-    description: 'ÕâÊÇÍÆ¼öÏî 13 µÄÃèÊöĞÅÏ¢',
+    title: 'æ¨èé¡¹ 13',
+    description: 'è¿™æ˜¯æ¨èé¡¹ 13 çš„æè¿°ä¿¡æ¯',
     image: 'https://via.placeholder.com/300'
   },
   {
     id: 14,
-    title: 'ÍÆ¼öÏî 14',
-    description: 'ÕâÊÇÍÆ¼öÏî 14 µÄÃèÊöĞÅÏ¢',
+    title: 'æ¨èé¡¹ 14',
+    description: 'è¿™æ˜¯æ¨èé¡¹ 14 çš„æè¿°ä¿¡æ¯',
     image: 'https://via.placeholder.com/300'
   },
   {
     id: 15,
-    title: 'ÍÆ¼öÏî 15',
-    description: 'ÕâÊÇÍÆ¼öÏî 15 µÄÃèÊöĞÅÏ¢',
+    title: 'æ¨èé¡¹ 15',
+    description: 'è¿™æ˜¯æ¨èé¡¹ 15 çš„æè¿°ä¿¡æ¯',
     image: 'https://via.placeholder.com/300'
   },
   {
     id: 16,
-    title: 'ÍÆ¼öÏî 16',
-    description: 'ÕâÊÇÍÆ¼öÏî 16 µÄÃèÊöĞÅÏ¢',
+    title: 'æ¨èé¡¹ 16',
+    description: 'è¿™æ˜¯æ¨èé¡¹ 16 çš„æè¿°ä¿¡æ¯',
     image: 'https://via.placeholder.com/300'
   },
   {
     id: 17,
-    title: 'ÍÆ¼öÏî 17',
-    description: 'ÕâÊÇÍÆ¼öÏî 17 µÄÃèÊöĞÅÏ¢',
+    title: 'æ¨èé¡¹ 17',
+    description: 'è¿™æ˜¯æ¨èé¡¹ 17 çš„æè¿°ä¿¡æ¯',
     image: 'https://via.placeholder.com/300'
   },
   {
     id: 18,
-    title: 'ÍÆ¼öÏî 18',
-    description: 'ÕâÊÇÍÆ¼öÏî 18 µÄÃèÊöĞÅÏ¢',
+    title: 'æ¨èé¡¹ 18',
+    description: 'è¿™æ˜¯æ¨èé¡¹ 18 çš„æè¿°ä¿¡æ¯',
     image: 'https://via.placeholder.com/300'
   },
   {
     id: 19,
-    title: 'ÍÆ¼öÏî 19',
-    description: 'ÕâÊÇÍÆ¼öÏî 19 µÄÃèÊöĞÅÏ¢',
+    title: 'æ¨èé¡¹ 19',
+    description: 'è¿™æ˜¯æ¨èé¡¹ 19 çš„æè¿°ä¿¡æ¯',
     image: 'https://via.placeholder.com/300'
   },
   {
     id: 20,
-    title: 'ÍÆ¼öÏî 20',
-    description: 'ÕâÊÇÍÆ¼öÏî 20 µÄÃèÊöĞÅÏ¢',
+    title: 'æ¨èé¡¹ 20',
+    description: 'è¿™æ˜¯æ¨èé¡¹ 20 çš„æè¿°ä¿¡æ¯',
     image: 'https://via.placeholder.com/300'
   }
-])
+]
+export default recommendList

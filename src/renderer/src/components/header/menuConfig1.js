@@ -2,27 +2,27 @@ const menuList1 = [
   {
     id: '1',
     title: '直播',
-    index: '/home/live'
+    index: '/live'
   },
   {
     id: '2',
     title: '推荐',
-    index: '/home/recommend'
+    index: '/recommend'
   },
   {
     id: '3',
     title: '热门',
-    index: '/home/hot'
+    index: '/hot'
   },
   {
     id: '4',
     title: '追番',
-    index: '/home/followAnime'
+    index: '/followAnime'
   },
   {
     id: '5',
     title: '影视',
-    index: '/home/movies'
+    index: '/movies'
   }
 ]
 

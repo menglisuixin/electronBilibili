@@ -4,7 +4,8 @@ const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
-      path: '/home',
+      path: '/',
+      // component: () => import('../pages/home/index.vue'),
       components: {
         default: () => import('../pages/home/index.vue'),
         headerRoute: () => import('../pages/headerMenus/index.vue')
@@ -16,27 +17,27 @@ const router = createRouter({
           redirect: 'recommend'
         },
         {
-          path: '/home/live',
+          path: 'live',
           component: () => import('../pages/live/index.vue'),
           meta: { title: '直播' }
         },
         {
-          path: '/home/recommend',
+          path: 'recommend',
           component: () => import('../pages/recommend/index.vue'),
           meta: { title: '推荐' }
         },
         {
-          path: '/home/hot',
-          component: () => import('../pages/hot/index.vue'), 
+          path: 'hot',
+          component: () => import('../pages/hot/index.vue'),
           meta: { title: '热门' }
         },
         {
-          path: '/home/followAnime',
+          path: 'followAnime',
           component: () => import('../pages/followAnime/index.vue'),
           meta: { title: '追番' }
         },
         {
-          path: '/home/movies',
+          path: 'movies',
           component: () => import('../pages/movies/index.vue'),
           meta: { title: '影视' }
         }
@@ -49,27 +50,12 @@ const router = createRouter({
     },
     {
       path: '/updates',
-      components: {
-        default: () => import('../pages/updates/index.vue'),
-        headerRoute: () => import('../pages/headerMenus/index.vue')
-      },
-      meta: { title: '动态' },
-      children: [
-        {
-          path: '',
-          redirect: 'comprehensive'
-        },
-        {
-          path: '/updates/comprehensive',
-          component: () => import('../pages/comprehensive/index.vue'),
-          meta: { title: '综合' }
-        },
-        {
-          path: '/updates/video',
-          component: () => import('../pages/video/index.vue'),
-          meta: { title: '视频' }
-        }
-      ]
+      component: () => import('../pages/updates/index.vue'),
+      // components: {
+      //   default: () => import('../pages/updates/index.vue'),
+      //   headerRoute: () => import('../pages/headerMenus/index.vue')
+      // },
+      meta: { title: '动态' }
     },
     {
       path: '/mine',
@@ -88,5 +74,5 @@ const router = createRouter({
     }
   ]
 })
-
+console.log('Router routes:', router.options.routes) // 添加调试信息
 export default router

@@ -1,10 +1,6 @@
 <template>
   <h1>updates</h1>
-  <router-view v-slot="{ Component }">
-    <transition name="router-fade" mode="out-in">
-      <component :is="Component" />
-    </transition>
-  </router-view>
+  <router-view></router-view>
 </template>
 <script setup></script>
 <style scoped></style>
