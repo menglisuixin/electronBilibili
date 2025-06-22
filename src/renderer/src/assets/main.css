@@ -1,0 +1,42 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  --el-menu-hover-bg-color: transparent;
+}
+
+@media (max-width: 720px) {
+  .text {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 620px) {
+  .versions {
+    display: none;
+  }
+}
+
+@media (max-width: 350px) {
+
+  .tip,
+  .actions {
+    display: none;
+  }
+}
+
+/* 定义路由切换的淡入淡出过渡效果 */
+.router-fade-enter-active,
+.router-fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.router-fade-enter-from,
+.router-fade-leave-to {
+  opacity: 0;
+}
+
+.drag-region {
+  -webkit-app-region: drag;
+}
