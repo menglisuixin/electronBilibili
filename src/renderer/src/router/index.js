@@ -4,18 +4,15 @@ const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
-      path: '/',
-      // component: () => import('../pages/home/index.vue'),
+      path: '/home',
       components: {
         default: () => import('../pages/home/index.vue'),
         headerRoute: () => import('../pages/headerMenus/index.vue')
       },
       meta: { title: '首页' },
+      redirect: '/home/recommend',
       children: [
-        {
-          path: '',
-          redirect: 'recommend'
-        },
+        
         {
           path: 'live',
           component: () => import('../pages/live/index.vue'),
@@ -50,12 +47,24 @@ const router = createRouter({
     },
     {
       path: '/updates',
-      component: () => import('../pages/updates/index.vue'),
-      // components: {
-      //   default: () => import('../pages/updates/index.vue'),
-      //   headerRoute: () => import('../pages/headerMenus/index.vue')
-      // },
-      meta: { title: '动态' }
+      components: {
+        default: () => import('../pages/updates/index.vue'),
+        headerRoute: () => import('../pages/headerMenus/index.vue')
+      },
+      meta: { title: '动态' },
+      redirect: '/updates/comprehensive',
+      children: [
+        {
+          path: 'comprehensive',
+          component: () => import('../pages/comprehensive/index.vue'),
+          meta: { title: '综合' }
+        },
+        {
+          path: 'video',
+          component: () => import('../pages/video/index.vue'),
+          meta: { title: '视频' }
+        }
+      ]
     },
     {
       path: '/mine',
@@ -74,5 +83,6 @@ const router = createRouter({
     }
   ]
 })
+
 console.log('Router routes:', router.options.routes) // 添加调试信息
 export default router

@@ -1,5 +1,5 @@
 <template>
-  <h1>สำฦต</h1>
+  <h1>่ง้ข‘</h1>
 </template>
-<script setup lang="ts"></script>
+<script setup></script>
 <style scoped></style>

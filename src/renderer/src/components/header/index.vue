@@ -4,13 +4,11 @@
       <HeaderLogo />
     </div>
     <div class="left-menu" :class="{ hidden: searchExpanded }">
-      <!-- 使用 transition 组件包裹 router-view 并指定过渡名称 -->
       <router-view name="headerRoute" v-slot="{ Component }">
         <transition name="router-fade" mode="out-in">
-          <component :is="Component" :menuList="menuList" />
+          <component :is="Component" :menu-list="currentMenuList" />
         </transition>
       </router-view>
-      <!-- <router-view name="headerRoute" :menuList="menuList1"></router-view> -->
     </div>
 
     <div class="right">
@@ -60,20 +58,21 @@
 import { ref, onMounted, nextTick, watch, onUnmounted, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import HeaderSearch from './component/headerSearch/index.vue'
-import menuList from './menuConfig1'
-// import menuList2 from './menuConfig2'
+import menuList1 from './menuConfig1'
+import menuList2 from './menuConfig2'
 import HeaderTools from './component/headerTools/index.vue'
 import HeaderLogo from './component/headerLogo/index.vue'
-// import menuList from '../navbar/menuConfig'
 const route = useRoute()
 const isSelectedRoute = ref(route.path === '/selected')
-// const currentMenuList = computed(() => {
-//   if (route.path === '/home') {
-//     return menuList1
-//   } else if (route.path === '/updates') {
-//     return menuList2
-//   }
-// })
+
+const currentMenuList = computed(() => {
+  if (route.path.includes('/home')) {
+    return menuList1
+  } else if (route.path.includes('/updates')) {
+    return menuList2
+  }
+  return menuList1
+})
 onMounted(() => {
   const unwatch = watch(
     () => route.path,
@@ -82,6 +81,7 @@ onMounted(() => {
     },
     { immediate: true }
   )
+
   // 在组件卸载时停止监听
   onUnmounted(() => {
     unwatch()

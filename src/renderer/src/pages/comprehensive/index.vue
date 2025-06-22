@@ -1,5 +1,5 @@
 <template>
-  <h1>вш╨о</h1>
+  <h1>Г╩╪Е░┬</h1>
 </template>
-<script setup lang="ts"></script>
+<script setup></script>
 <style scoped></style>
