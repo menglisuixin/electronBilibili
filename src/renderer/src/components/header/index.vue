@@ -4,11 +4,11 @@
       <HeaderLogo />
     </div>
     <div class="left-menu" :class="{ hidden: searchExpanded }">
-      <router-view name="headerRoute" v-slot="{ Component }">
-        <transition name="router-fade" mode="out-in">
-          <component :is="Component" :menu-list="currentMenuList" />
-        </transition>
-      </router-view>
+        <router-view name="headerRoute" v-slot="{ Component }">
+          <transition name="router-fade" mode="out-in">
+            <component :is="Component" :menu-list="currentMenuList" />
+          </transition>
+        </router-view>
     </div>
 
     <div class="right">

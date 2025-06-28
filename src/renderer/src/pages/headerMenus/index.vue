@@ -22,37 +22,53 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, defineProps, nextTick, watch } from 'vue'
+import { ref, onMounted, defineProps, nextTick, watch } from 'vue'
 import { useRoute } from 'vue-router'
 
-// ¶¨Òåprops
+// å®šä¹‰props
 const props = defineProps(['menuList'])
 
 const menuWrapper = ref(null)
 const indicator = ref(null)
 const route = useRoute()
-// ¶¨ÒåÖ¸Ê¾Æ÷ÑÕÉ«
+// å®šä¹‰æŒ‡ç¤ºå™¨é¢œè‰²
 const indicatorColor = ref('#ff6699')
 
-// ¶¨Òå²»Í¬Â·ÓÉÏÂµÄÄ¬ÈÏ¼¤»îÏî
+// å®šä¹‰ä¸åŒè·¯ç”±ä¸‹çš„é»˜è®¤æ¿€æ´»é¡¹
 const homeActive = '/home/recommend'
 const updatesActive = '/updates/comprehensive'
 
-// Éú³ÉÎ¨Ò»µÄ localStorage ¼ü
-const getStorageKey = () => `menuActiveIndex_${route.path}`
-// ´Ó localStorage ¶ÁÈ¡¼¤»îÏîË÷Òı£¬ÈôÃ»ÓĞÔò³õÊ¼»¯Îª¿Õ
+// ä½¿ç”¨çˆ¶è·¯ç”±ä½œä¸ºlocalStorageé”®çš„ä¸€éƒ¨åˆ†ï¼Œç¡®ä¿åŒä¸€çˆ¶è·¯ç”±ä¸‹çš„å­è·¯ç”±å…±äº«åŒä¸€ä¸ªæ¿€æ´»çŠ¶æ€
+const getStorageKey = () => {
+  const parentRoute = route.path.split('/')[1] || ''
+  return `menuActiveIndex_${parentRoute}`
+}
+
+// ä»localStorageè¯»å–æ¿€æ´»é¡¹ç´¢å¼•
 const activeIndex = ref(localStorage.getItem(getStorageKey()) || '')
+
+// æ‰“å°åˆå§‹å€¼
+console.log('åˆå§‹åŒ– activeIndex:', activeIndex.value)
+
+// ç›‘å¬ activeIndex å˜åŒ–ï¼Œå˜åŒ–æ—¶æ‰“å°æ–°å€¼
+watch(
+  activeIndex,
+  (newValue) => {
+    console.log('activeIndex å˜åŒ–ä¸º:', newValue)
+  },
+  { deep: true }
+)
 
 const moveIndicator = () => {
   nextTick(() => {
     if (menuWrapper.value) {
-      // ÕÒµ½µ±Ç°¼¤»îµÄ²Ëµ¥Ïî
+      // æ‰¾åˆ°å½“å‰æ¿€æ´»çš„èœå•é¡¹
       const activeItem = menuWrapper.value.querySelector(`.el-menu-item.is-active`)
       if (activeItem) {
         const rect = activeItem.getBoundingClientRect()
         const parentRect = menuWrapper.value.getBoundingClientRect()
 
-        // ÉèÖÃÖ¸Ê¾Æ÷ÑùÊ½
+        // è®¾ç½®æŒ‡ç¤ºå™¨æ ·å¼
         indicator.value.style.width = '18px'
         indicator.value.style.height = '2px'
         indicator.value.style.left = `${rect.left - parentRect.left + (rect.width - 18) / 2}px`
@@ -64,62 +80,71 @@ const moveIndicator = () => {
 }
 
 const handleSelect = (key) => {
-  // µã»÷²Ëµ¥Ê±¸üĞÂ¼¤»îÏî
+  // ç‚¹å‡»èœå•æ—¶æ›´æ–°æ¿€æ´»é¡¹
   activeIndex.value = key
-  // ½«¼¤»îÏîË÷Òı´æÈë localStorage£¬Ê¹ÓÃÎ¨Ò»¼ü
+  // å°†æ¿€æ´»é¡¹ç´¢å¼•å­˜å…¥localStorageï¼Œä½¿ç”¨çˆ¶è·¯ç”±ä½œä¸ºé”®çš„ä¸€éƒ¨åˆ†
   localStorage.setItem(getStorageKey(), key)
-  // È·±£ DOM ¸üĞÂºóÔÙÒÆ¶¯Ö¸Ê¾Æ÷
+  // ç¡®ä¿DOMæ›´æ–°åå†ç§»åŠ¨æŒ‡ç¤ºå™¨
   nextTick(() => {
     moveIndicator()
-    // ÕâÀï¿É¸ù¾İĞèÇó¶¯Ì¬ĞŞ¸ÄÖ¸Ê¾Æ÷ÑÕÉ«
-    // Ê¾Àı£º¹Ì¶¨ÑÕÉ«
+    // è¿™é‡Œå¯æ ¹æ®éœ€æ±‚åŠ¨æ€ä¿®æ”¹æŒ‡ç¤ºå™¨é¢œè‰²
+    // ç¤ºä¾‹ï¼šå›ºå®šé¢œè‰²
     indicatorColor.value = '#ff6699'
   })
 }
 
-// ×é¼ş¹ÒÔØÊ±³õÊ¼»¯Ö¸Ê¾Æ÷Î»ÖÃ
+// ç»„ä»¶æŒ‚è½½æ—¶åˆå§‹åŒ–æŒ‡ç¤ºå™¨ä½ç½®
 onMounted(() => {
   nextTick(() => {
     moveIndicator()
   })
 })
 
-// ×é¼şĞ¶ÔØÊ±Çå³ı localStorage ÖĞµÄÊı¾İ
-onUnmounted(() => {
-  localStorage.removeItem(getStorageKey())
-})
-
-// ¼àÌıÂ·ÓÉ±ä»¯£¬¸üĞÂ¼¤»îÏî
+// ç›‘å¬è·¯ç”±å˜åŒ–ï¼Œæ›´æ–°æ¿€æ´»é¡¹
 watch(
   () => route.path,
   (newPath) => {
-    let newActiveIndex = ''
-    // ¸ù¾İµ±Ç°Â·ÓÉÂ·¾¶ÉèÖÃÄ¬ÈÏ¼¤»îÏî
-    if (newPath.includes('/home')) {
-      newActiveIndex = homeActive
-    } else if (newPath.includes('/updates')) {
-      newActiveIndex = updatesActive
-    }
-    // ÓÅÏÈÊ¹ÓÃ localStorage ÖĞµÄÖµ£¬Ê¹ÓÃĞÂÂ·¾¶¶ÔÓ¦µÄ¼ü
-    const storedIndex = localStorage.getItem(`menuActiveIndex_${newPath}`)
-    if (storedIndex) {
+    const storageKey = getStorageKey()
+    const storedIndex = localStorage.getItem(storageKey)
+
+    // æŸ¥æ‰¾åŒ¹é…å½“å‰è·¯ç”±çš„èœå•é¡¹
+    const matchedItem = props.menuList.find((item) => item.index === newPath)
+
+    if (matchedItem) {
+      // å¦‚æœå½“å‰è·¯ç”±æœ‰å¯¹åº”çš„èœå•é¡¹ï¼Œä½¿ç”¨å®ƒä½œä¸ºæ¿€æ´»é¡¹
+      activeIndex.value = matchedItem.index
+      localStorage.setItem(storageKey, matchedItem.index)
+    } else if (storedIndex) {
+      // å¦‚æœlocalStorageä¸­æœ‰ä¿å­˜çš„æ¿€æ´»é¡¹ï¼Œä½¿ç”¨å®ƒ
       activeIndex.value = storedIndex
     } else {
+      // ä»…åœ¨æ²¡æœ‰å­˜å‚¨å€¼æ—¶è®¾ç½®é»˜è®¤æ¿€æ´»é¡¹
+      let newActiveIndex = ''
+      if (newPath.includes('/home')) {
+        // æ£€æŸ¥æ˜¯å¦æœ‰å¯¹åº”çš„èœå•é¡¹å­˜åœ¨
+        const homeItem = props.menuList.find((item) => item.index === homeActive)
+        newActiveIndex = homeItem ? homeActive : ''
+      } else if (newPath.includes('/updates')) {
+        const updatesItem = props.menuList.find((item) => item.index === updatesActive)
+        newActiveIndex = updatesItem ? updatesActive : ''
+      }
       activeIndex.value = newActiveIndex
+      localStorage.setItem(storageKey, newActiveIndex)
     }
-    // È·±£ DOM ¸üĞÂºóÔÙÒÆ¶¯Ö¸Ê¾Æ÷
+
+    // ç¡®ä¿DOMæ›´æ–°åå†ç§»åŠ¨æŒ‡ç¤ºå™¨
     nextTick(() => {
       moveIndicator()
-      // Â·ÓÉ±ä»¯Ê±¸üĞÂÖ¸Ê¾Æ÷ÑÕÉ«
+      // è·¯ç”±å˜åŒ–æ—¶æ›´æ–°æŒ‡ç¤ºå™¨é¢œè‰²
       indicatorColor.value = '#ff6699'
     })
   },
-  { immediate: true } // ×é¼ş¹ÒÔØÊ±Á¢¼´Ö´ĞĞÒ»´Î
+  { immediate: true } // ç»„ä»¶æŒ‚è½½æ—¶ç«‹å³æ‰§è¡Œä¸€æ¬¡
 )
 </script>
 
 <style scoped>
-/* ÑùÊ½±£³Ö²»±ä */
+/* æ ·å¼ä¿æŒä¸å˜ */
 .menu-wrapper {
   height: 62px;
   position: relative;

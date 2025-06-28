@@ -2,9 +2,35 @@ import { app, shell, BrowserWindow, ipcMain } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
+import mysql from 'mysql2/promise'
+import dotenv from 'dotenv'
 
+// 加载环境变量
+dotenv.config()
+ 
 // 定义全局变量存储主窗口实例
 let mainWindow
+// 定义全局变量存储数据库连接池
+let dbPool
+
+// 创建数据库连接池
+async function createDbPool() {
+  try {
+    dbPool = mysql.createPool({
+      host: process.env.DB_HOST,
+      user: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_DATABASE,
+      port: process.env.DB_PORT,
+      waitForConnections: true,
+      connectionLimit: 10,
+      queueLimit: 0
+    })
+    console.log('111')
+  } catch (error) {
+    console.error('数据库连接池创建失败:', error)
+  }
+}
 
 function createWindow() {
   // 创建浏览器窗口。
@@ -39,7 +65,10 @@ function createWindow() {
   }
 }
 
-app.whenReady().then(() => {
+app.whenReady().then(async () => {
+  // 初始化数据库连接池
+  await createDbPool()
+
   electronApp.setAppUserModelId('com.electron')
 
   app.on('browser-window-created', (_, window) => {
@@ -70,7 +99,6 @@ app.whenReady().then(() => {
       mainWindow.close()
     }
   })
-
   createWindow()
 
   app.on('activate', function () {
@@ -80,6 +108,11 @@ app.whenReady().then(() => {
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
+    // 关闭数据库连接池
+    if (dbPool) {
+      dbPool.end()
+      console.log('数据库连接池已关闭')
+    }
     app.quit()
   }
 })
